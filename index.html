@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head class="abc">
+<title>
+514
+</title>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .abc {
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+        }
+    </style>
+</head>
+<body style="background-color:powderblue;">
+<!--
+<p class="abc">EX415 Red Hat Certified Specialist in Security: Linux</p>
+-->
+<br>
+<br>
+
+<h1 class="abc">
+•	Use Red Hat Ansible® Engine
+</h1>
+
+<h2>
+## o            Install Red Hat Ansible Engine on a control node.
+</h2>
+<b class="abc">1. Register with Red Hat Satellite:
+</b>
+<p class="abc">Ensure your control node is registered with Red Hat Satellite. You can do this via the Satellite GUI.
+</p>
+<br>
+<br>
+<b class="abc">2. Enable Repositories:
+</b>
+<p class="abc">Enable the necessary repositories for Red Hat Ansible Engine.
+</p>
+<p class="abc">Run the following commands:
+</p>
+<pre class="abc">
+subscription-manager repos --enable satellite-tools-6.6-for-rhel-8-x86_64-rpms
+subscription-manager repos --enable ansible-2.9-for-rhel-8-x86_64-rpms
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Install Ansible:
+</b>
+<p class="abc">
+Install Ansible using the yum package manager.
+Run:
+</p>
+<pre class="abc">
+yum install ansible
+</pre>
+<br>
+<br>
+<b class="abc">
+4. Verify Installation:
+</b>
+<p class="abc">
+Check the Ansible version to ensure it was installed correctly:
+</p>
+<pre class="abc">
+ansible --version
+</pre>
+<br>
+<br>
+<b class="abc">
+5. Configure Ansible:
+</b>
+<p class="abc">
+Modify the default settings in the <u><i style="color: red;">ansible.cfg</i></u> file if needed.
+</p>
+<br>
+<br>
+<br>
+
+<h2 class="abc">
+## o	Configure managed nodes.
+</h2>
+
+<b class="abc">
+1. Create an Inventory File:
+</b>
+<p class="abc">
+Define the managed nodes in an inventory file. For example, create a file named <u><i style="color: red;">hosts</i></u> with the following content:
+</p>
+<pre class="abc">
+Ini
+[managed_nodes]
+node1.example.com
+node2.example.com
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Install Ansible on Managed Nodes:
+</b>
+<p class="abc">
+Ensure Ansible is installed on the managed nodes. You can use the following command:
+</p>
+<pre class="abc">
+Sh
+sudo yum install ansible
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Configure Managed Nodes:
+</b>
+<p class="abc">
+Set up SSH keys for passwordless authentication between the control node and managed nodes. Run:
+</p>
+<pre class="abc">
+Sh
+ssh-keygen
+ssh-copy-id user@node1.example.com
+ssh-copy-id user@node2.example.com
+</pre>
+<br>
+<br>
+<b class="abc">
+4. Run Playbooks:
+</b>
+<p class="abc">
+Use Ansible playbooks to manage the nodes. For example, create a playbook <u><i style="color: red;">playbook.yml</i></u> and run it with:
+</p>
+<pre class="abc">
+Sh
+ansible-playbook playbook.yml -i hosts
+</pre>
+<br>
+<br>
+<!--
+## o	Configure simple inventories.
+-->
+<b class="abc">
+1. Create an Inventory File:
+</b>
+<p class="abc">
+Define the managed nodes in an inventory file. For example, create a file named <u><i style="color: red;">hosts</i></u> with the following content:
+</p>
+<pre class="abc">
+Ini
+[managed_nodes]
+node1.example.com
+node2.example.com
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Specify Host Variables:
+</b>
+<p class="abc">
+Optionally, you can define variables for each host in the inventory file:
+</p>
+<pre class="abc">
+Ini
+[managed_nodes]
+node1.example.com ansible_host=192.168.1.1
+node2.example.com ansible_host=192.168.1.2
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Use the Inventory File: 
+</b>
+<p class="abc">
+When running Ansible playbooks, specify the inventory file using the <u><i style="color: red;">-i</i></u> option:
+</p>
+<pre class="abc">
+Sh
+ansible-playbook playbook.yml -i hosts
+</pre>
+<br>
+<br>
+
+## o	Perform basic management of systems.
+
+<b class="abc">
+1. Use Red Hat Ansible Engine:
+</b>
+<p>
+Install and configure Ansible on your control node and managed nodes.
+</p>
+<br>
+<br>
+<b class="abc">
+2. Create and Manage Inventories:
+</b>
+<p class="abc">
+Define your managed nodes in an inventory file and specify host variables if needed.
+</p>
+<br>
+<br>
+<b class="abc">
+3. Run Playbooks:
+</b>
+<p class="abc">
+Write and execute Ansible playbooks to manage your systems.
+</p>
+<br>
+<br>
+<b class="abc">
+4. Configure Intrusion Detection:
+</b>
+<p class="abc">
+Install and configure AIDE to monitor critical system files.
+</p>
+<br>
+<br>
+<b class="abc">
+5. Manage Encrypted Storage:
+</b>
+<p class="abc">
+Use LUKS to encrypt and decrypt block devices, and configure encrypted storage persistence using NBDE.
+</p>
+<br>
+<br>
+<b class="abc">
+6. Restrict USB Devices:
+</b>
+<p class="abc">
+Install USBGuard and write device policy rules to manage USB devices.
+</p>
+<br>
+<br>
+<b class="abc">
+7. Manage System Login Security:
+</b>
+<p class="abc">
+Use PAMs to configure password quality requirements and failed login policies.
+</p>
+<br>
+<br>
+<b>
+8. Configure System Auditing:
+</b>
+<p class="abc">
+Write rules to log auditable events and enable prepackaged rules.
+</p>
+<br>
+<br>
+<b class="abc">
+9. Configure SELinux:
+</b>
+<p class="abc">
+Enable SELinux on your host and manage user activity with SELinux user mappings.
+</p>
+<br>
+<br>
+<b class="abc">
+10. Enforce Security Compliance:
+</b>
+<p class="abc">
+Use OpenSCAP and Red Hat Insights to scan hosts for security compliance and apply remediation scripts.	
+</p>
+<br>
+<br>
+<h2 class="abc">
+## o	Run a provided playbook against specified nodes.
+</h2>
+<b class="abc">
+1. Create an Inventory File:
+</b>
+<p class="abc">
+Define the managed nodes in an inventory file. For instance, create a file named <u><i style="color: red;">hosts</i></u>:
+</p>
+<pre class="abc">
+Ini
+[managed_nodes]
+node1.example.com
+node2.example.com
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Write Your Playbook:
+</b>
+<p>
+Ensure you have a playbook ready. For example, <u><i style="color: red;">playbook.yml</i></u> could look something like this:
+</p>
+<pre class="abc">
+Yaml
+- hosts: managed_nodes
+  tasks:
+    - name: Ensure Apache is installed
+      yum:
+        name: httpd
+        state: present
+
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Run the Playbook:
+</b>
+<p class="abc">
+Use the <u><i style="color: red;">ansible-playbook</i></u> command to execute the playbook against the nodes defined in your inventory:
+</p>
+<pre class="abc">
+Sh
+ansible-playbook -i hosts playbook.yml
+</pre>
+<br>
+<br>
+
+<h1 class="abc">
+•	Implement access controls for automation controller
+</h1>
+
+
+<h2 class="abc">
+## o	Create and restrict an inventory to an automation controller user
+</h2>
+
+<b class="abc">
+1. Log in to the Automation Controller:
+</b>
+<p class="abc">
+Use your credential to log in.
+</p>
+<br>
+<br>
+<b class="abc">
+2. Create a New Inventory:
+</b>
+<p class="abc">
+Navigate to the Inventories section.
+<br>
+Click on Add to create a new inventory.
+<br>
+Provide a name and description.
+<br>
+Define groups and add hosts.
+</p>
+<br>
+<br>
+<b class="abc">
+3. Assign Permissions:
+</b>
+<p class="abc">
+Go to the Access tab for the inventory.
+<br>
+Add the user or team.
+<br>
+Set permissions (e.g., read, write, execute).
+</p>
+<br>
+<br>
+<b class="abc">
+4. Restrict Access:
+</b>
+<p class="abc">
+Ensure only the specified user or team has access.
+<br>
+You can configure role-based access control (RBAC) for further restriction.
+</p>
+<br>
+<br>
+<h2>
+## o	Restrict a credential and/or a project to an automation controller user
+</h2>
+<b class="abc">
+1. Log in to the Automation Controller:
+</b>
+<p class="abc">
+Use your credentials to log in.
+</p>
+<br>
+<br>
+<b class="abc">
+2. Navigate to Credential:
+</b>
+<p class="abc">
+Go to the Credentials section from the left navigation bar.
+</p>
+<br>
+<br>
+<b class="abc">
+3. Create or Edit a Credential:
+</b>
+<p class="abc">
+Click on Add to create a new credential or select an existing one to edit.
+<br>
+Provide the necessary details for the credential (e.g., SSH key, username, password).
+</p>
+<br>
+<br>
+<b class="abc">
+4. Assign Access:
+</b>
+<p class="abc">
+Go to the Access tab for the credential.
+<br>
+Add the specific user or team to whom you want to grant access.
+<br>
+Set the appropriate roles (e.g., owner, admin, auditor).
+</p>
+<br>
+<br>
+<b class="abc">
+5. Restrict Project Access:
+</b>
+<p>
+Navigate to the Projects section.
+<br>
+Select the project you want to restrict.
+<br>
+Go to the Access tab and add the user or team.
+<br>
+Set the appropriate permissions for the project.
+</p>
+<br>
+<br>
+<h2>
+## o	Be able to create and launch a template as an automation controller user
+</h2>
+<b class="abc">
+1. Log in to the Automation Controller:
+</b>
+<p class="abc">
+Use your credentials to log in.
+</p>
+<br>
+<br>
+<b class="abc">
+2. Create a Job Template:
+</b>
+<p class="abc">
+Navigate to the <b>Templates</b> section from the left navigation bar.
+<br>
+Click on <b>Add</b> to create a new job template.
+<br>
+Fill out the job template parameters, such as:
+<br>
+<b>Name:</b> Enter a name for the job template.
+<br>
+<b>Job Type:</b> Select "Run" for running a playbook.
+<br>
+<b>Inventory:</b> Choose the inventory you want to run the job against.
+<br>
+<b>Project:</b> Select the project containing your Ansible playbooks.
+<br>
+<b>Execution Environment:</b> Choose the appropriate environment.
+<br>
+<b>Playbook:</b> Specify the playbook you want to run.
+<br>
+<b>Credential:</b> Add the necessary credentials to access the devices
+</p>
+<br>
+<br>
+<b class="abc">
+3. Save the Job Template:
+</b>
+<p class="abc">
+Click the <b>Save</b> button to save the job template.
+</p>
+<br>
+<br>
+<b class="abc">
+4. Launch the Job Template:
+</b>
+<p class="abc">
+Navigate back to the <b>Templates</b> section.
+<br>
+Find your newly created job template and click the <b>Rocket</b> button to launch it.
+<br>
+The job will open in a new window called the <b>Job Details View</b>.
+</p>
+<br>
+<br>
+<b class="abc">
+Examine the Job Details:
+</b>
+<p class="abc">
+Check the output and details of the job to ensure it ran successfully
+</p>
+<br>
+<br>
+
+
+<h1 class="abc">
+•	Configure intrusion detection
+</h1>
+
+<h2>
+## o	Install AIDE (Advanced Intrusion Detection Environment).
+</h2>
+<b class="abc">
+1. Install AIDE:
+</b>
+<p class="abc">
+Use the package manager to install AIDE. Run the following command:
+</p>
+<pre class="abc">
+Sh
+sudo dnf install aide
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Initialize AIDE:
+</b>
+<p class="abc">
+Initialize the AIDE database to create a baseline of the current system state:
+</p>
+<pre class="abc">
+Sh
+sudo aide --init
+</pre>
+<br>
+<br>
+<b class="abc">
+Update AIDE Database:
+</b>
+<p class="abc">
+Update the AIDE database to reflect the current state of the system:
+</p>
+<pre class="abc">
+Sh
+sudo aide --update
+</pre>
+<br>
+<br>
+<b class="abc">
+4. Configure AIDE:
+</b>
+<p class="abc">
+Edit the AIDE configuration file <u><i style="color:red;">/etc/aide.conf</i></u> to specify which files and directories to monitor. You can find more details in the AIDE documentation.
+</p>
+<br>
+<br>
+5. <b class="abc">
+Set Up Cron Job:
+</b>
+<p class="abc">
+Schedule AIDE to run periodically and check for changes. Add a cron job to run AIDE daily:
+</p>
+<pre class="abc">
+Sh
+echo "0 5 * * * /usr/bin/aide --check" | sudo tee -a /etc/crontab
+</pre>
+<br>
+<br>
+<b class="abc">
+6. Check AIDE Logs:
+</b>
+<p class="abc">
+Review the AIDE logs to monitor for any changes or potential intrusions:
+</p>
+<pre class="abc">
+Sh
+sudo cat /var/log/aide.log
+</pre>
+<br>
+<br>
+<h2 class="abc">
+## o	Configure AIDE to monitor critical system files.
+</h2>
+<b class="abc">
+1. Edit the AIDE Configuration File:
+</b>
+<p class="abc">
+Open the AIDE configuration file located at <u><i style="color:red;">/etc/aide.conf</i></u> with your preferred text editor:
+</p>
+<pre class="abc">
+Sh
+sudo nano /etc/aide.conf
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Specify Files and Directories:
+</b>
+<p class="abc">
+Add entries to monitor critical system files and directories. For example:
+</p>
+<pre class="abc">
+Conf
+/bin
+/sbin
+/etc
+/usr/bin
+/usr/sbin
+/var/log
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Initialize AIDE Database:
+</b>
+<p class="abc">
+Create an initial database to establish a baseline:
+</p>
+<pre class="abc">
+Sh
+sudo aide --init
+</pre>
+<br>
+<br>
+<b class="abc">
+4. Update AIDE Database: 
+</b>
+<p class="abc">
+Update the database to reflect the current state of the system:
+</p>
+<pre class="abc">
+Sh
+sudo aide --update
+</pre>
+<br>
+<br>
+<b class="abc">
+5. Schedule AIDE Checks:
+</b>
+<p class="abc">
+Set up a cron job to run AIDE periodically. Add the following line to your crontab:
+</p>
+<pre class="abc">
+Sh
+05 4 * * * /usr/sbin/aide --check
+# This will run AIDE daily at 4:05 AM.
+</pre>
+<br>
+<br>
+<b class="abc">
+6. Review AIDE Logs:
+</b>
+<p class="abc">
+Check the AIDE logs to monitor for any changes or potential intrusions:
+</p>
+<pre class="abc">
+Sh
+sudo cat /var/log/aide.log
+</pre>
+<br>
+<br>
+<h1 class="abc">
+•	Configure encrypted storage
+</h1>
+
+<h2 class="abc">
+## o	Encrypt and decrypt block devices using LUKS.
+</h2>
+<h2 class="abc">
+1.1 Encrypting a Block Device with LUKS
+</h2>
+<b>
+1. Format the Block Device:
+</b>
+<p class="abc">
+Use the <u><i style="color:red;">cryptsetup</i></u> command to format the block device.
+</p>
+<pre class="abc">
+Sh
+sudo cryptsetup luksFormat /dev/sdX
+<br>
+# Replace <u><i style="color:red;">/dev/sdX</i></u> with the appropriate device identifier.
+</pre>
+<br>
+<br>
+<b>
+2. Open the Encrypted Device:
+</b>
+<p class="abc">
+Open the device to create a mapped device.
+</p>
+<pre class="abc">
+Sh
+sudo cryptsetup open /dev/sdX my_encrypted_device
+<br>
+# <i>This will prompt you to enter the passphrase you set earlier</i>.
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Use the Mapped Device:
+</b>
+<p class="abc">
+Now you can use the mapped device as you would with any other block device.
+</p>
+<pre class="abc">
+Sh
+sudo mount /dev/mapper/my_encrypted_device 
+</pre>
+<br>
+<br>
+<h2 class="abc">
+1.2 Decrypting a Block Device with LUKS
+</h2>
+<b class="abc">
+1. Close the Encrypted Device:
+</b>
+<p class="abc">
+First, unmount the device if it's mounted.
+</p>
+<pre class="abc">
+Sh
+sudo umount /mnt
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Close the Mapped Device:
+</b>
+<p class="abc">
+Use the <u><i style="color:red;">cryptsetup</i></u> command to close the mapped device.
+</p>
+<pre class="abc">
+Sh
+sudo cryptsetup close my_encrypted_device
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Remove Encryption:
+</b>
+<p class="abc">
+If you want to remove the encryption, you can use the <u><i style="color:red;">cryptsetup</i></u> command to wipe the LUKS header.
+</p>
+<pre class="abc">
+Sh
+sudo cryptsetup luksClose /dev/sdX
+sudo cryptsetup luksFormat
+</pre>
+<br>
+<br>
+<h2 class="abc">
+## o	Configure encrypted storage persistence using NBDE.
+</h2>
+<h2 class="abc">
+1.0 Setting Up <u><i style="color:red;">Network Boot Disk Encryption (NBDE)</i></u> for Encrypted Storage Persistence
+</h2>
+<b class="abc">
+1. Install and Configure Ansible:
+</b>
+<p class="abc">
+Ensure Ansible is installed and configured on your control node.
+</p>
+<br>
+<br>
+<b class="abc">
+2. Create an Inventory File:
+</b>
+<p class="abc">
+Define the managed nodes in an Ansible inventory file.
+</p>
+<br>
+<br>
+<b class="abc">
+3. Create Playbooks:
+</b>
+<p class="abc">
+Write Ansible playbooks to automate the encryption and decryption tasks.
+</p>
+<br>
+<br>
+<b class="abc">
+4. Deploy NBDE
+</b>
+<p class="abc">
+Use the playbooks to deploy NBDE on the managed nodes.
+</p>
+<br>
+<br>
+<b class="abc">
+5. Persist Encryption:
+</b>
+<p class="abc">
+Ensure that the encryption persists across reboots by configuring the necessary services and scripts.
+</p>
+<br>
+<br>
+
+<h2 class="abc">
+## o	Change encrypted storage passphrases.
+</h2>
+<h2 class="abc">
+1.0 Changing the Passphrase
+</h2>
+<b class="abc">
+1. 
+</b>
+<p class="abc">
+First, open the encrypted device using cryptsetup.
+</p>
+<pre class="abc">
+Sh
+sudo cryptsetup open /dev/sdX my_encrypted_device
+<br>
+# <i>Replace <i style="color:red;">/dev/sdX</i> with the appropriate device identifier</i>.
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Change the Passphrase:
+</b>
+<p class="abc">
+Use the <u><i style="color:red;">luksChangeKey</i></u> command to change the passphrase.
+</p>
+<pre class="abc">
+Sh
+sudo cryptsetup luksChangeKey /dev/sdX
+<br>
+# You will be prompted to enter the old passphrase and then the new passphrase.
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Close the Encrypted Device:
+</b>
+<p class="abc">
+After changing the passphrase, close the device.
+</p>
+<pre class="abc">
+Sh
+sudo cryptsetup close
+</pre>
+<br>
+<br>
+
+<h1 class="abc">
+•	Restrict USB devices
+</h1>
+
+<h2 class="abc">
+## o	Install USBGuard.
+</h2>
+<b class="abc">
+Install the USBGuard Package:
+</b>
+<p class="abc">
+Open a terminal and run the following command to install USBGuard:
+</p>
+<pre class="abc">
+Sh
+sudo dnf install usbguard
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Generate an Initial Rule Set:
+</b>
+<p class="abc">
+Create a basic policy file to define which USB devices are allowed or blocked:
+</p>
+<pre class="abc">
+Sh
+sudo usbguard generate-policy > /etc/usbguard/rules.conf
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Start the USBGuard Service:
+</b>
+<p class="abc">
+Start the USBGuard daemon and ensure it starts automatically on boot:
+</p>
+<pre class="abc">
+Sh
+sudo systemctl enable --now usbguard
+</pre>
+<br>
+<br>
+<b class="abc">
+4. Verify the Service:
+</b>
+<p class="abc">
+Check that the USBGuard service is running:
+</p>
+<pre class="abc">
+Sh
+sudo systemctl status 
+</pre>
+<br>
+<br>
+
+<h2 class="abc">
+## o	Write device policy rules with specific criteria to manage devices.
+</h2>
+<b class="abc">
+1. Open the Policy File:
+</b>
+<p class="abc">
+Edit the USBGuard policy file to define rules for specific devices.
+</p>
+<pre class="abc">
+Sh
+sudo nano /etc/usbguard/rules.conf
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Add Rules:
+</b>
+<p class="abc">
+Define rules to allow or block specific devices based on their attributes. For example, to allow a specific USB device with <u><i style="color:red;">vendor ID 1234</i></u> and <u><i style="color:red;">product ID 5678</i></u>, you can add:
+</p>
+<pre class="abc">
+Sh
+allow 1234:5678
+</pre>
+<br>
+</br>
+<b class="abc">
+3. Deny Specific Devices:
+</b>
+<p class="abc">
+To block a device, use the <u><i style="color:red;">deny</i></u> keyword followed by the vendor and product IDs:
+</p>
+<pre class="abc">
+Sh
+deny 1234:5678
+</pre>
+<br>
+</br>
+<b class="abc">
+4. Save and Close:
+</b>
+<p class="abc">
+Save the changes and exit the editor.
+</p>
+<br>
+</br>
+<b class="abc">
+5. Restart USBGuard:
+</b>
+<p class="abc">
+Apply the new rules by restarting the USBGuard service:
+</p>
+<pre class="abc">
+Sh
+sudo systemctl restart usbguard
+</pre>
+<br>
+</br>
+<h2 class="abc">
+## o	Manage administrative policy and daemon configuration.
+</h2>
+
+<h1 class="abc">
+•	Manage system login security using pluggable authentication modules (PAMs)
+</h1>
+
+<h2 class="abc">
+## o	Configure password quality requirements.
+</h2>
+<b class="abc">
+1. Install the pam_pwquality Package:
+</b>
+<p class="abc">
+If it's not already installed, you can install it using the following command:
+</p>
+<pre class="abc">
+Sh
+sudo dnf install pam_pwquality
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Edit the PAM Configuration File:
+</b>
+<p class="abc">
+Open the PAM configuration file for password quality settings.
+</p>
+<pre class="abc">
+Sh
+sudo nano /etc/security/pwquality.conf
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Set Password Quality Requirements:
+</b>
+<p class="abc">
+Define the password quality requirements in the <u><i style="color:red;">pwquality.conf</i></u> file. For example:
+</p>
+<pre class="abc">
+Sh
+minlen=12
+ucredit=-1
+dcredit=-1
+lcredit=-1
+ocredit=-1
+retry=3
+<br>
+# <u><i style="color:red;">minlen</i></u>: Minimum length of the password.
+
+# <u><i style="color:red;">ucredit</i></u>: Minimum number of uppercase characters.
+
+# <u><i style="color:red;">dcredit</i></u>: Minimum number of digits1.
+
+# <u><i style="color:red;">lcredit</i></u>: Minimum number of lowercase characters.
+
+# <u><i style="color:red;">ocredit</i></u>: Minimum number of other characters (e.g., special characters).
+
+# <u><i style="color:red;">retry</i></u>: Number of attempts allowed before account lockout.
+
+# <u><i style="color:red;">difok</i></u>: Number of characters that must be different from the old password.
+</pre>
+<br>
+<br>
+<b class="abc">
+4. Update the PAM Configuration:
+</b>
+<p class="abc">
+Edit the PAM configuration file to include the <u><i style="color:red;">pam_pwquality</i></u> module.
+</p>
+<pre class="abc">
+Sh
+sudo nano /etc/pam.d/common-password
+</pre>
+<br>
+<br>
+<b class="abc">
+5. Add the pam_pwquality Module:
+</b>
+<p class="abc">
+Add the following line to the common-password file:
+</p>
+<pre class="abc">
+Sh
+password requisite pam_pwquality.so retry=3
+</pre>
+<br>
+<br>
+<b class="abc">
+6. Restart the PAM Service:
+</b>
+<p class="abc">
+Restart the PAM service to apply the changes:
+</p>
+<pre class="abc">
+Sh
+sudo systemctl restart pam
+</pre>
+<br>
+<br>
+
+<h2 class="abc">
+## o	Configure failed login policy.
+</h2>
+<b class="abc">
+1. Open the PAM Configuration File:
+</b>
+<p class="abc">
+Edit the PAM configuration file for the login service.
+</p>
+<pre class="abc">
+Sh
+sudo nano /etc/pam.d/login
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Add the pam_faillock Module:
+</b>
+<p class="abc">
+Add the following line to the <u><i style="color:red;">login</i></u> file to enable account lockout after a certain number of failed login attempts:
+</p>
+<pre class="abc">
+Sh
+auth required pam_faillock.so preauth silent deny=5 unlock_time=600 fail_interval=300
+auth required pam_faillock.so authfail deny=5 unlock_time=600 fail_interval=300
+<br>
+# <u><i style="color:red;">deny=5</i></u>: Lock the account after 5 failed login attempts.
+# <u><i style="color:red;">unlock_time=600</i></u>: Unlock the account after 600 seconds (10 minutes).
+# <u><i style="color:red;">fail_interval=300</i></u>: Lock the account for 300 seconds (5 minutes) after each failed attempt.
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Restart the PAM Service:
+</b>
+<p class="abc">
+Restart the PAM service to apply the changes:
+</p>
+<pre class="abc">
+Sh
+sudo systemctl restart pam
+
+</pre>
+<br>
+<br>
+
+<h2 class="abc">
+## o	Modify PAM configuration files and parameters.
+</h2>
+<h2 class="abc">
+1.0 Basic Structure of PAM Configuration
+</h2>
+<p class="abc">
+PAM configuration files are located in <u><i style="color:red;">/etc/pam.d/</i></u>. Each service (like <u><i style="color:red;">login</i></u>, <u><i style="color:red;">sshd</i></u>, <u><i style="color:red;">password-auth</i></u>) has its own configuration file.
+</p>
+<h2 class="abc">
+1.1 Modifying a PAM Configuration File
+</h2>
+<b class="abc">
+1. Open a PAM Configuration File:
+</b>
+<p class="abc">
+For example, to modify SSH login parameters:
+</p>
+<pre class="abc">
+Sh
+sudo nano /etc/pam.d/sshd
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Edit the Required Parameters:
+</b>
+<p class="abc">
+<u><i style="color:red;">pam_faillock</i></u>: To set account lockout after multiple failed attempts:
+</p>
+<pre class="abc">
+Sh
+auth required pam_faillock.so preauth silent deny=5 unlock_time=600 fail_interval=300
+auth required pam_faillock.so authfail deny=5 unlock_time=600 fail_interval=300
+
+</pre>
+<p class="abc">
+<u><i style="color:red;">pam_pwquality</i></u>: To enforce strong passwords:
+</p>
+<pre class="abc">
+Sh
+password requisite pam_pwquality.so retry=3 minlen=12 ucredit=-1 dcredit=-1 lcredit=-1 ocredit=-1
+
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Save and Close the File:
+</b>
+<p class="abc">
+Press <u><i style="color:red;">Ctrl+O</i></u> to save and <u><i style="color:red;">Ctrl+X</i></u> to exit.
+</p>
+<br>
+<br>
+
+<b class="abc">
+4. Restart the PAM-Related Service:
+</b>
+<p class="abc">
+Apply the changes by restarting the relevant service, such as SSHD:
+</p>
+<pre class="abc">
+Sh
+sudo systemctl restart sshd
+</pre>
+<br>
+<br>
+
+<h1 class="abc">
+•	Configure system auditing
+</h1>
+
+<h2 class="abc">
+## o	Write rules to log auditable events.
+</h2>
+<b class="abc">
+1. Step 1 Install the Audit Package
+</b>
+<p class="abc">
+First, ensure the audit package is installed:
+</p>
+<pre class="abc">
+Sh
+sudo dnf install audit
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Step 2: Create Audit Rules
+</b>
+<p class="abc">
+Edit the audit rules file to define what events you want to log:
+</p>
+<pre class="abc">
+Sh
+sudo nano /etc/audit/rules.d/audit.rules
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Step 3: Add Rules
+</b>
+<p class="abc">
+Add rules to log specific events. For example, to log all attempts to modify the /etc/passwd file:
+</p>
+<pre class="abc">
+Sh
+-w /etc/passwd -p wa -k passwd_changes
+-w /etc/passwd: Specifies the file to watch.
+-p wa: Specifies the permissions to watch for (write and attribute changes).
+-k passwd_changes: Adds a key to the log entry for easier searching.
+</pre>
+<br>
+<br>
+<b class="abc">
+4. Step 4: Reload the Audit Daemon
+</b>
+<p class="abc">
+After adding the rules, reload the audit daemon to apply the changes:
+</p>
+<pre class="abc">
+Sh
+sudo systemctl restart auditd
+</pre>
+<br>
+<br>
+<b class="abc">
+5. Step 5: Verify the Rules
+</b>
+<p class="abc">
+Check that the rules have been loaded correctly:
+</p>
+<pre class="abc">
+Sh
+auditctl -l
+</pre>
+<br>
+<br>
+
+<h2 class="abc">
+## o	Enable prepackaged rules.
+</h2>
+<b class="abc">
+1. Step 1: Install the Audit Package
+</b>
+<p class="abc">
+First, ensure the audit package is installed:
+</p>
+<pre class="abc">
+Sh
+sudo dnf install audit
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Step 2: Enable Prepackaged Rules
+</b>
+<p class="abc">
+Edit the audit rules file to enable the prepackaged rules:
+</p>
+<pre class="abc">
+Sh
+sudo nano /etc/audit/rules.d/audit.rules
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Step 3: Add Prepackage Rules
+</b>
+<p class="abc">
+Add the following line to enable the prepackaged rules:
+</p>
+<pre class="abc">
+Sh
+# Includ preconfigured rules
+include /etc/audit/rules.d/preconfigured_rules.rules
+</pre>
+<br>
+<br>
+<b class="abc">
+4. Step 4: Reload the Audit Daemon
+</b>
+<p class="abc">
+After adding the rules, reload the audit daemon to apply the changes:
+</p>
+<pre class="abc">
+Sh
+sudo systemctl restart auditd
+</pre>
+<br>
+<br>
+<b class="abc">
+5. Step 5: Verify the Rules
+</b>
+<p class="abc">
+Check that the rules have been loaded correctly:
+</p>
+<pre class="abc">
+Sh
+auditctl -l
+</pre>
+<br>
+<br>
+<h2 class="abc">
+## o	Produce audit reports.
+</h2>
+<b class="abc">
+1. Step 1: Install the Audit Package
+</b>
+<p class="abc">
+First, ensure the audit package is installed:
+</p>
+<pre class="abc">
+Sh
+sudo dnf install audit
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Step 2: Start and Enable the Audit Service
+</b>
+<p class="abc">
+Start the audit service and enable it to run on boot:
+</p>
+<pre class="abc">
+Sh
+sudo systemctl start auditd
+sudo systemctl enable auditd
+
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Step 3: Generate Audit Reports
+</b>
+<p class="abc">
+Use the <u><i style="color:red;">ausearch</i></u> and <u><i style="color:red;">aureport</i></u> commands to generate audit reports. For example, to generate a report of all login attempts:
+</p>
+<pre class="abc">
+Sh
+sudo aureport -i -x
+
+</pre>
+<br>
+<br>
+<b class="abc">
+4. Step 4: Save the Report
+</b>
+<p class="abc">
+Save the generated report to a file for later analysis:
+</p>
+<pre class="abc">
+Sh
+sudo aureport -i -x > login_attempts_report.txt
+
+</pre>
+<br>
+<br>
+<b class="abc">
+5. Step 5: View the Report
+</b>
+<p class="abc">
+View the contents of the report:
+</p>
+<pre class="abc">
+Sh
+cat login_attempts_report.txt
+
+</pre>
+<br>
+<br>
+
+<h1 class="abc">
+•	Configure SELinux
+</h1>
+
+<h2 class="abc">
+## o	Enable SELinux on a host running a simple application.
+</h2>
+<b class="abc">
+1. Step 1: Check SELinux Status
+</b>
+<p class="abc">
+First, verify the current SELinux status:
+</p>
+<pre class="abc">
+Sh
+sestatus
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Step 2: Install the Policycoreutils Package
+</b>
+<p class="abc">
+Make sure the <u><i style="color:red;">policycoreutils</i></u> package is installed, as it includes necessary SELinux management tools:
+</p>
+<pre class="abc">
+Sh
+sudo dnf install policycoreutils
+
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Step 3: Enable Enforcing Mode
+</b>
+<p class="abc">
+Temporarily set SELinux to enforcing mode:
+</p>
+<pre class="abc">
+Sh
+sudo setenforce 1
+</pre>
+<br>
+<br>
+<b class="abc">
+4. Step 4: Edit the SELinux Configuration File
+</b>
+<p class="abc">
+To make SELinux changes permanent, open the configuration file:
+</p>
+<pre class="abc">
+Sh
+sudo nano /etc/selinux/config
+
+</pre>
+<p class="abc">
+Change the <u><i style="color:red;">SELINUX</i></u> line to:
+</p>
+<pre class="abc">
+Sh
+SELINUX=enforcing
+</pre>
+<br>
+<br>
+<b class="abc">
+5. Step 5: Reboot the System
+</b>
+<p class="abc">
+Reboot the host to apply the changes:
+</p>
+<pre class="abc">
+Sh
+sudo reboot
+</pre>
+<br>
+<br>
+<b class="abc">
+6. Step 6: Verify SELinux is Enabled
+</b>
+<p class="abc">
+After rebooting, check that SELinux is active:
+</p>
+<pre class="abc">
+sestatus
+
+</pre>
+<b class="abc">
+Step 7: Test Your Application
+</b>
+<p class="abc">
+Run your simple application to ensure it functions correctly under SELinux. If there are issues, review and adjust the SELinux policies accordingly.
+</p>
+<br>
+<br>
+<h2 class="abc">
+## o	Interpret SELinux violations and determine remedial action.
+</h2>
+<b class="abc">
+1. Step 1: Identify the Violation
+</b>
+<p class="abc">
+Check the audit logs for SELinux violations:
+</p>
+<pre class="abc">
+Sh
+ausearch -m AVC,USER_AVC -ts recent
+<br>
+# This command searches for Access Vector Cache (AVC) messages logged recently.
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Step 2: Analyze the Violation
+</b>
+<p class="abc">
+Use the <u><i style="color:red;">sealert</i></u> tool to get a human-readable explanation of the violation:
+</p>
+<pre class="abc">
+Sh
+sealert -l <message_id>
+<br>
+# Replace <u><i style="color:red;"><message_id></i></u> with the ID of the AVC message you found.
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Step 3: Determine the Cause
+</b>
+<p class="abc">
+Common causes of SELinux violations include:
+<i style="color:red;">Incorrect file context</i>: Files or directories might be labeled incorrectly.
+<i style="color:red;">Misconfigured policies</i>: SELinux policies might not be set up correctly for your application.
+<i style="color:red;">Booleans</i>: SELinux booleans might be set in a way that restricts necessary actions.
+</p>
+
+<br>
+<br>
+<b class="abc">
+4. Step 4: Take Remedial Action
+</b>
+<p class="abc">
+Depending on the cause, you might need to:
+<br>
+<i style="color:red;">Relabel files</i>: Use the <u><i style="color:red;">restorecon</i></u> command to apply the correct SELinux context:
+</p>
+<pre class="abc">
+Sh
+sudo restorecon -R /path/to/directory
+
+</pre>
+<p class="abc">
+<i style="color:red;">Modify policies</i>: Adjust SELinux policies or booleans to allow the necessary actions. For example, to set a boolean:
+</p>
+<pre class="abc">
+Sh
+sudo setsebool -P boolean_name 1
+<p class="abc">
+<i style="color:red;">Update configurations</i>: Ensure that your application and system configurations are correct and compatible with SELinux policies.
+</p>
+</pre>
+<br>
+<br>
+<b class="abc">
+5. Step 5: Verify the Fix
+</b>
+<p class="abc">
+After taking remedial action, verify that the issue is resolved:
+</p>
+<pre class="abc">
+Sh
+ausearch -m AVC,USER_AVC -ts recent
+# If no AVC messages are found, the issue has likely been resolved.
+</pre>
+<br>
+<br>
+<h2 class="abc">
+## o	Restrict user activity with SELinux user mappings.
+</h2>
+<b class="abc">
+1. Step 1: Create a New SELinux User
+</b>
+<p class="abc">
+Create a new SELinux user with a specific role:
+</p>
+<pre class="abc">
+Sh
+sudo useradd -Z selsandbox newuser
+<br>
+This command creates a new user <i style="color:red;">(newuser)</i> and assigns it to the SELinux user <i style="color:red;">selsandbox</i>.
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Step 2: Assign a Role
+</b>
+<p class="abc">
+Assign a role to the new SELinux user:
+</p>
+<pre class="abc">
+Sh
+sudo semanage login -a -R selsandbox
+<br>
+# This command assigns the <i style="color:red;">selsandbox</i> role to the <i style="color:red;">newuser</i>.
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Step 3: Verify the Mapping
+</b>
+<p class="abc">
+Verify that the user is correctly mapped to the SELinux user:
+</p>
+<pre class="abc">
+Sh
+id -Z newuser
+<br>
+This command should return <i style="color:red;">selsandbox</i> if the mapping is correct.
+</pre>
+<br>
+<br>
+<b class="abc">
+4. Step 4: Test the Restrictions
+</b>
+<p class="abc">
+Log in as the new user and test the restrictions:
+</p>
+<pre class="abc">
+Sh
+su - newuser
+<p class="abc">
+# Try performing various actions to ensure that the SELinux policies are restricting the user's activities as expected.
+</p>
+</pre>
+<br>
+<br>
+<b class="abc">
+5. Step 5: Adjust Policies if Needed
+</b>
+<p class="abc">
+If the restrictions are too strict or too lenient, you may need to adjust the SELinux policies or roles accordingly.
+</p>
+
+<br>
+<br>
+<h2 class="abc">
+## o	Analyze and correct existing SELinux configurations.
+</h2>
+<b class="abc">
+1. Step 1: Check SELinux Status
+</b>
+<p class="abc">
+Verify the current status of SELinux:
+</p>
+<pre class="abc">
+Sh
+sestatus
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Step 2: Review Audit Logs
+</b>
+<p class="abc">
+Check the audit logs for any SELinux violations:
+</p>
+<pre class="abc">
+Sh
+ausearch -m AVC,USER_AVC -ts recent
+<p class="abc">
+This command searches for Access Vector Cache (AVC) messages logged recently.
+</p>
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Step 3: Analyze Violations
+</b>
+<p class="abc">
+Use the <i style="color:red;">sealert</i> tool to get a human-readable explanation of the violations:
+</p>
+<pre class="abc">
+Sh
+sealert -l <message_id>
+# Replace <message_id> with the ID of the AVC message you found.
+</pre>
+<br>
+<br>
+<b class="abc">
+4. Step 4: Identify the Cause
+</b>
+<p class="abc">
+Common causes of SELinux violations include:
+<i style="color:red;">Incorrect file context</i>: Files or directories might be labeled incorrectly.
+<i style="color:red;">Misconfigured policies</i>: SELinux policies might not be set up correctly for your application.
+<i style="color:red;">Booleans</i>: SELinux booleans might be set in a way that restricts necessary actions.
+</p>
+<br>
+<br>
+
+<b class="abc">
+5. Step 5: Take Remedial Action
+</b>
+<p class="abc">
+Depending on the cause, you might need to:
+<i style="color:red;">Relabel files</i>: Use the <u><i style="color:red;">restorecon</i></u> command to apply the correct SELinux context:
+</p>
+<pre class="abc">
+Sh
+sudo restorecon -R /path/to/directory
+</pre>
+<p class="abc">
+<i style="color:red;">Modify policies</i>: Adjust SELinux policies or booleans to allow the necessary actions. For example, to set a boolean:
+</p>
+<pre class="abc">
+Sh
+sudo setsebool -P boolean_name 1
+<p class="abc">
+<i style="color:red;">Update configurations</i>: Ensure that your application and system configurations are correct and compatible with SELinux policies.
+</p>
+</pre>
+<br>
+<br>
+<b class="abc">
+6. Step 6: Verify the Fix
+</b>
+<p class="abc">
+After taking remedial action, verify that the issue is resolved:
+</p>
+<pre class="abc">
+Sh
+ausearch -m AVC,USER_AVC -ts recent
+</pre>
+<p class="abc">
+If no AVC messages are found, the issue has likely been resolved.
+</p>
+<br>
+<br>
+<h1 class="abc">
+•	Enforce security compliance
+</h1>
+
+<h2 class="abc">
+## o	Install OpenSCAP and OpenSCAP Workbench.
+</h2>
+<b class="abc">
+1. Step 1: Install OpenSCAP Base
+</b>
+<p class="abc">
+First, install the OpenSCAP base package:
+</p>
+<pre class="abc">
+Sh
+sudo dnf install openscap openscap-utils
+
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Step 2: Install SCAP Security Guide
+</b>
+<p class="abc">
+Next, install the SCAP Security Guide, which provides a set of security content:
+</p>
+<pre class="abc">
+Sh
+sudo dnf install scap-security-guide
+
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Step 3: Install OpenSCAP Workbench
+</b>
+<p class="abc">
+Finally, install the OpenSCAP Workbench for a graphical interface:
+</p>
+<pre class="abc">
+Sh
+sudo dnf install scap-workbench
+
+</pre>
+<br>
+<br>
+<b class="abc">
+4. Step 4: Verify the Installation
+</b>
+<p class="abc">
+Verify that the packages are installed correctly:
+</p>
+<pre class="abc">
+Sh
+scap -V
+# This command should display the version information for OpenSCAP and related tools.
+</pre>
+<br>
+<br>
+<b class="abc">
+5. Step 5: Start OpenSCAP Workbench
+</b>
+<p class="abc">
+You can start the OpenSCAP Workbench from the application menu or by running:
+</p>
+<pre class="abc">
+Sh
+scap-workbench
+
+</pre>
+<br>
+<br>
+<h2 class="abc">
+## o	Scan hosts for security compliance
+</h2>
+<b class="abc">
+1. Step 1: Install OpenSCAP and OpenSCAP Workbench
+</b>
+<p class="abc">
+First, install the necessary packages:
+</p>
+<pre class="abc">
+Sh
+sudo dnf install openscap openscap-utils scap-security-guide scap-workbench
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Step 2: Start OpenSCAP Workbench
+</b>
+<p class="abc">
+Launch the OpenSCAP Workbench:
+</p>
+<pre class="abc">
+Sh
+scap-workbench
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Step 3: Create a New Scan
+</b>
+<p class="abc">
+In the OpenSCAP Workbench, create a new scan:
+
+1. Open the <i style="color:red;">New Scan</i> wizard.
+2. Select the host you want to scan.
+3. Choose the appropriate profile (e.g., RHEL 7 Benchmark).
+
+</p>
+<br>
+<br>
+<b class="abc">
+4. Step 4: Run the Scan
+</b>
+<p class="abc">
+Run the scan and wait for it to complete:
+1. Click <i style="color:red;">Next</i> to proceed through the wizard.
+2. Review the scan settings and click <i style="color:red;">Finish</i> to start the scan.
+
+</p>
+<br>
+<br>
+<b class="abc">
+5. Step 5: Review the Results
+</b>
+<p class="abc">
+Once the scan is complete, review the results:
+1. Navigate to the <i style="color:red;">Results</i> tab.
+2. Analyze the findings and identify any compliance issues.
+
+</p>
+<br>
+<br>
+<b class="abc">
+6. Step 6: Apply Remediation Scripts
+</b>
+<p class="abc">
+If there are any compliance issues, you can apply remediation scripts provided by OpenSCAP:
+1. Select the non-compliant items.
+2. Click <i style="color:red;">Remediate</i> to apply the recommended fixes.
+</p>
+<b class="abc">
+7. Step 7: Verify Compliance
+</b>
+<p class="abc">
+After applying the fixes, rerun the scan to verify that the host is now compliant.
+</p>
+<h2 class="abc">
+## o	Tailor security policy
+</h2>
+<b class="abc">
+1. Step 1: Install OpenSCAP and OpenSCAP Workbench
+</b>
+<p class="abc">
+First, install the necessary packages:
+</p>
+<pre class="abc">
+Sh
+sudo dnf install openscap openscap-utils scap-security-guide scap-workbench
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Step 2: Start OpenSCAP Workbench
+</b>
+<p class="abc">
+Launch the OpenSCAP Workbench:
+</p>
+<pre class="abc">
+Sh
+scap-workbench
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Step 3: Create a New Scan
+</b>
+<p class="abc">
+In the OpenSCAP Workbench, create a new scan:
+Open the New Scan wizard.
+Select the host you want to scan.
+Choose the appropriate profile (e.g.,  RHEL 7 Benchmark).
+</p>
+<br>
+<br>
+<b class="abc">
+4. Step 4: Run the Scan
+</b>
+<p class="abc">
+Run the scan and wait for it to complete:
+Click Next to proceed through the wizard.
+Review the scan settings and click Finish to start the scan.
+</p>
+<br>
+<br>
+<b class="abc">
+5. Step 5: Review the Results
+</b>
+<p class="abc">
+Once the scan is complete, review the results:
+Navigate to the Results tab.
+Analyze the findings and identify any compliance issues.
+</p>
+<br>
+<br>
+<b class="abc">
+Step 6: Apply Remediation Scripts
+</b>
+<p class="abc">
+If there are any compliance issues, you can apply remediation scripts provided by OpenSCAP:
+Select the non-compliant items.
+Click Remediate to apply the recommended fixes.
+</p>
+<b class="abc">
+Step 7: Verify Compliance
+</b>
+<p class="abc">
+After applying the fixes, rerun the scan to verify that the host is now compliant.
+</p>
+<h2 class="abc">
+## o	Scan individual hosts for security compliance
+</h2>
+<b class="abc">
+1. Step 1: Install OpenSCAP and OpenSCAP Workbench
+</b>
+<p class="abc">
+First, install the necessary packages:
+</p>
+<pre class="abc">
+Sh
+sudo dnf install openscap openscap-utils scap-security-guide scap-workbench
+</pre>
+<br>
+<br>
+<b class="abc">
+2. Step 2: Start OpenSCAP Workbench
+</b>
+<p class="abc">
+Launch the OpenSCAP Workbench:
+</p>
+<pre class="abc">
+Sh
+scap-workbench
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Step 3: Create a New Scan
+</b>
+<p class="abc">
+In the OpenSCAP Workbench, create a new scan:
+Open the New Scan wizard.
+Select the host you want to scan.
+Choose the appropriate profile (e.g., RHEL 7 Benchmark).
+</p>
+
+<br>
+<br>
+<b class="abc">
+4. Step 4: Run the Scan
+</b>
+<p class="abc">
+Run the scan and wait for it to complete:
+Click Next to proceed through the wizard.
+Review the scan settings and click Finish to start the scan.
+</p>
+
+<br>
+<br>
+<b class="abc">
+5. Step 5: Review the Results
+</b>
+<p class="abc">
+Once the scan is complete, review the results:
+Navigate to the Results tab.
+Analyze the findings and identify any compliance issues.
+</p>
+<br>
+<br>
+<b class="abc">
+Step 6: Apply Remediation Scripts
+</b>
+<p class="abc">
+If there are any compliance issues, you can apply remediation scripts provided by OpenSCAP:
+Select the non-compliant items.
+Click Remediate to apply the recommended fixes.
+</p>
+<br>
+<br>
+<b class="abc">
+Step 7: Verify Compliance
+</b>
+<p class="abc">
+After applying the fixes, rerun the scan to verify that the host is now compliant.
+</p>
+<br>
+<br>
+
+<h2 class="abc">
+## o	Generate and apply a playbook from customized XML for remediation of inventory hosts
+</h2>
+<b class="abc">
+1. Step 1: Create Customized XML
+</b>
+<p class="abc">
+First, create a customized XML file that defines the remediation tasks.
+This XML file will be used to generate the Ansible playbook.
+</p>
+<br>
+<br>
+<b class="abc">
+2. Step 2: Generate Ansible Playbook
+</b>
+<p class="abc">
+Use the oscap command to generate an Ansible playbook from the customized XML:
+</p>
+<pre class="abc">
+Sh
+oscap xccdf generate fix --fix-content <customized_xml_file>.xml --output <playbook_file>.yml
+# Replace <customized_xml_file>.xml with the path to your XML file and <playbook_file>.yml with the desired output playbook file name.
+</pre>
+<br>
+<br>
+<b class="abc">
+3. Step 3: Review the Playbook
+</b>
+<p class="abc">
+Open the generated playbook file and review the tasks to ensure they meet your requirements:
+</p>
+<pre class="abc">
+Sh
+nano <playbook_file>.yml
+</pre>
+<br>
+<br>
+<b class="abc">
+4. Step 4: Apply the Playbook
+</b>
+<p class="abc">
+Run the Ansible playbook to apply the remediation tasks to your inventory hosts:
+</p>
+<pre class="abc">
+Sh
+ansible-playbook <playbook_file>.yml
+</pre>
+<br>
+<br>
+<b class="abc">
+5. Step 5: Verify Remediation
+</b>
+<p class="abc">
+After applying the playbook, verify that the remediation tasks have been successfully executed on the hosts:
+</p>
+<pre class="abc">
+Sh
+ansible-playbook <playbook_file>.yml 
+</pre>
+<br>
+<br>
+</body>
+</html>
